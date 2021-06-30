@@ -1,0 +1,97 @@
+@charset "UTF-8";
+
+
+
+/* login */
+.login_menu{
+	display: inline-block;
+	width: 150px;
+	height: 10px;
+	z-index: 5;
+	float: right;
+	position: relative;
+	margin-bottom: 100px;
+}
+
+.login_menu i{
+	color: white;
+	font-size: 15px;
+	size: 20px;
+}
+
+.login_menu a{
+	font-size: 15px;
+	color: #b4b4b4;
+	text-decoration: none;
+}
+
+/* navbar */
+.navbar{
+	width: 70%;
+	margin: 0 auto;
+	height: 125px;
+	font-family: 'Farro', sans-serif;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	background-color: #263343;
+/* 	padding: 55px 12px; */
+	z-index: 1;
+}
+
+
+.navbar_align{
+	width: 100%;
+	height: 125px;
+	display: inline-block;
+	background-color: #263343;
+	z-index: 1;
+}
+
+.navbar_logo{
+	margin-left: 35px;
+}
+
+.navbar_logo a{
+	font-size: 35px;
+	color: #b4b4b4;
+	text-decoration: none;
+}
+
+.navbar_logo i{
+	color: #5ec7dd;
+	font-size: 24px;
+	size: 150px;
+}
+
+.navbar_menu{
+	display: flex;
+	list-style: none;
+	padding-left: 0;
+	padding: 10px 5px;
+}
+
+.navbar_menu li{
+	padding: 8px 12px;
+	font-size: 20px;
+}
+
+.navbar_menu li:hover {
+	background-color: #d49466;
+	border-radius: 4px;
+}
+
+.navbar_menu li a{
+	color: #b4b4b4;
+	text-decoration: none;
+}
+
+.navbar_icons{
+	list-style: none;
+	color: white;
+	display: flex;
+}
+
+.navbar_icons li{
+	padding: 4px 12px;
+}

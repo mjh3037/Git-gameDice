@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="uploadFiles">
+	
+	
+	<select id="getUploadList" parameterType="String" resultType="hashmap">
+		select uploadPath,
+		       uuid,
+		       fileName
+			   from attach 
+			   where pcode =#{pcode}
+	</select>
+	
+	
+	<insert id="insertUploadFile" parameterType="hashmap">
+	
+<!-- 	<if test="Parameter != null &amp;&amp; !Parameter.equals('')"> -->
+		insert into attach(uuid, uploadPath, fileName, fileType, pcode, screenType, includeId)
+		 values(#{uuid}, #{uploadPath}, #{uploadFileName}, #{fileType}, #{pcode}, #{screenType}, #{includeId})
+<!-- 	</if> -->
+		 
+	</insert>
+	
+	
+	<delete id="deleteUploadFile" parameterType="hashmap">
+		delete from attach where uuid=#{uuid}
+	</delete>
+	
+	<select id="selectUploadFile" parameterType="String" resultType="String">
+		 select cname from company where companyCode=#{code}
+	</select>
+	
+	<select id="getProductList" resultType="hashMap">
+		select * from product
+	</select>
+	
+</mapper>
