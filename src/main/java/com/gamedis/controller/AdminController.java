@@ -8,7 +8,7 @@ public class AdminController {
 
 	@RequestMapping("/admin/info")
 	public String adminInfoView() {
-		System.out.println("add1saassad");
+		System.out.println("add1saassadb");
 		return "/adminView";
 	}
 }
