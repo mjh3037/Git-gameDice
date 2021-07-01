@@ -1,0 +1,130 @@
+@charset "UTF-8";
+
+
+/*store_navbar*/
+.store_navbar{
+	display: inline-block;
+	justify-content: space-between;
+	align-items: center;
+	border-radius: 5px 5px 5px 5px;
+	width: 1100px;
+	height: 75px;
+	margin: 80px 350px;
+	z-index: 1;
+	position: relative;
+}
+
+.store_navbar a{
+	color: #b4b4b4;
+	height: 30px;
+}
+
+.store_navbar_subject{
+	font-size: 28px;
+	padding: 8px 12px;
+}
+
+.store_navbar_menu{
+	display: flex;
+	list-style: none;
+	padding-left: 0;
+	padding: 10px 15px 5px 15px;
+	border-radius: 4px;
+	z-index: 1;
+	height: 65px;
+	/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#cedbe9+0,aac5de+17,6199c7+50,3a84c3+52,419ad6+59,4bb8f0+71,3a8bc2+84,26558b+100&0.86+0,0.85+100 */
+	background: -moz-linear-gradient(45deg,  rgba(206,219,233,0.86) 0%, rgba(170,197,222,0.86) 17%, rgba(97,153,199,0.86) 50%, rgba(58,132,195,0.86) 52%, rgba(65,154,214,0.86) 59%, rgba(75,184,240,0.86) 71%, rgba(58,139,194,0.86) 84%, rgba(38,85,139,0.85) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(45deg,  rgba(206,219,233,0.86) 0%,rgba(170,197,222,0.86) 17%,rgba(97,153,199,0.86) 50%,rgba(58,132,195,0.86) 52%,rgba(65,154,214,0.86) 59%,rgba(75,184,240,0.86) 71%,rgba(58,139,194,0.86) 84%,rgba(38,85,139,0.85) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(45deg,  rgba(206,219,233,0.86) 0%,rgba(170,197,222,0.86) 17%,rgba(97,153,199,0.86) 50%,rgba(58,132,195,0.86) 52%,rgba(65,154,214,0.86) 59%,rgba(75,184,240,0.86) 71%,rgba(58,139,194,0.86) 84%,rgba(38,85,139,0.85) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dbcedbe9', endColorstr='#d926558b',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.store_navbar_menu .search{
+	height: 45px;
+	opacity: 0.8;
+	padding: 7.5px 0px 0px 0px;
+/* 	margin: 5px; */
+}
+
+.store_navbar_menu li{
+	padding: 10px 25px;
+	height: 50px;
+	opacity: 0.8;
+	
+}
+
+.store_navbar_menu li a{
+	text-decoration:none;
+	color:#D1FFFB;
+}
+
+
+
+
+.store_navbar_menu li .searchText{
+	width: 150px;
+	float: left;
+}
+
+.store_navbar_menu li .searchSelect{
+	width: 50px;
+	float: left;
+}
+
+/*auto complete*/
+.searchterm_options{
+	width: 425px;
+	/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#606c88+0,3f4c6b+100;Grey+3D+%232 */
+	background: #606c88; /* Old browsers */
+	background: -moz-linear-gradient(top,  #606c88 0%, #3f4c6b 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #606c88 0%,#3f4c6b 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #606c88 0%,#3f4c6b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#606c88', endColorstr='#3f4c6b',GradientType=0 ); /* IE6-9 */
+	position: absoulte;
+	z-index: 5;
+	margin: 0px 0px 125px 550px;
+	opacity: 0.95;
+	z-index: 1200;
+}
+
+.match_ds_collapse_flag{
+	position: relative;
+	width: 95%;
+	height: 90px;
+	margin: 10px 10px 10px 10px;
+	border-top: solid;
+/* 	border-bottom: solid; */
+	border-color: #b4b4b4;
+	border-width: 1px;
+	padding: 5px;
+}
+
+.searchterm_options .match_img{
+	width: 100px;
+	height: 90px;
+	float: left;
+	position: relative;
+	
+}
+
+.searchterm_options .match_img img{
+	width: 150px;
+	height: 90px;
+	position: relative;
+}
+
+.searchterm_options .match_name{
+	width: 225px;
+	height: 45px;
+	float: right;
+	position: relative;
+	color: white;
+}
+
+.searchterm_options .match_price{
+	width: 225px;
+	height: 50px;
+	float: right;
+	position: relative;
+	color: white;
+}
