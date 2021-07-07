@@ -23,7 +23,7 @@ a
 			<div class="content">
 				<div class="left_col">
 					<div class="search_results">
-						<div class="search_results_count"><strong>${count}</strong> results match your search. </div>
+						<div class="search_results_count"></div>
 					</div>
 					<div class="search_result_container">
 						<div class="search_resultsRows">
@@ -40,7 +40,7 @@ a
 getSearchList();
 
 function getProductInfo(pcode){
-	
+	console.log("pcode:" + pcode);
 	var idx = pcode;
 	location.href="/product/productInfo/"+ idx;
 }
@@ -56,8 +56,7 @@ function getSearchList(){
 	var text = "${text}";
 	var strCnt = "";
 	var cnt = 0;
-	console.log("text:" + text);
-	
+
 	$.ajax({
 		url: "/search/searchAjax",
 		type: "get",
@@ -68,7 +67,11 @@ function getSearchList(){
 			$.map(response, function(item){
 				var fileCallPath = item.uploadPath + "\\" + item.uuid + "_" + item.fileName;
 				var flatform = "";
-				
+				var pname ="";
+				var releasedDate = "";
+				var price = "";
+				var pcode = "";
+				/* flatform */
 				if(item.flatform.indexOf('windows') != -1){
 					flatform += "<i class='fab fa-windows'></i>";
 					
@@ -79,10 +82,28 @@ function getSearchList(){
 				}
 				console.log("flatform"+ flatform);
 				
-				str += "<a class='search_result_row' href='javascript:void(0);' onClick='getProductInfo(" + item.pcode + ")'><div class='search_capsule'><img src='/display?fileName=" + fileCallPath + "'></div>";
-				str += "<div class='search_name_combined'><div class='search_name_ellipsis'><span class='title'>" + item.pname + "</span><p>" + flatform + "</p></div>"
-				str += "<div class='search_released'>" + unixTimeConvert(item.releasedDate) + "</div><div class='search_reviewscore'></div>"
-				str += "<div class='search_price_discount_combined'><div class='search_discount'></div><div class='search_price'>"+ "\\" + item.price + "</div></div>"
+				/*pakage product*/
+				if(item.includeId != null){
+					pname = item.inclPname;
+					releasedDate = item.inclReg_dt;
+					price = item.inclPrice;
+					if(item.packageType !=null){
+						pcode = "pak_"+ item.packageType + "_" + item.includeId;
+					}else{
+						pcode = "pak_"+ item.includeId;
+					}
+					
+				}else{
+					pname = item.pname
+					releasedDate = item.releasedDate;
+					price = item.price;
+					pcode = item.pcode;
+				}
+				
+				str += "<a class='search_result_row' href='javascript:void(0);' onClick=getProductInfo(\'" + pcode + "'\)><div class='search_capsule'><img src='/display?fileName=" + fileCallPath + "'></div>";
+				str += "<div class='search_name_combined'><div class='search_name_ellipsis'><span class='title'>" + pname + "</span><p>" + flatform + "</p></div>"
+				str += "<div class='search_released'>" + unixTimeConvert(releasedDate) + "</div><div class='search_reviewscore'></div>"
+				str += "<div class='search_price_discount_combined'><div class='search_discount'></div><div class='search_price'>"+ "\\" + price + "</div></div>"
 				str += "</div></a>";
 				cnt++;
 			});

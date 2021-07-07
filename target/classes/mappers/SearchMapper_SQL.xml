@@ -6,13 +6,16 @@
 	
 	<select id="getProductSearchList" parameterType="String" resultType="hashmap">
 		select 
-				  t1.*
-				, t2.uploadPath
-        		, date_format(t1.releasedDate, '%m %W,%Y') as reg_dt
-		        , t2.uuid
-		        , t2.fileName
+				  distinct
+		          t1.*
+		        , date_format(t1.releasedDate, '%m %W,%Y') as reg_dt
+		        , t2.*
+		        , (select price from productIncludeInfo where includeId = t2.includeId) as inclPrice
+		        , (select includePname from productIncludeInfo where includeId = t2.includeId) as inclPname
+		        , (select releasedDate from productIncludeInfo where includeId = t2.includeId) as  inclReg_dt
+				, (select pakageType from productIncludeInfo where includeId = t2.includeId) as packageType
 		from product t1 left join attach t2
 		on t1.pcode = t2.pcode
-		where upper(pname) like upper(concat('%',#{pname},'%')) and t2.screenType = 'L'
+		where upper(pname) like upper(concat('%',#{pname},'%')) and t2.screenType = 'L';
 	</select>
 </mapper>

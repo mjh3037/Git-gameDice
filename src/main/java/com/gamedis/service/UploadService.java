@@ -16,10 +16,14 @@ public class UploadService {
 	@Resource(name="uploadDao") 
 	private UploadDao uploadDao;
 
+	public List<DataMap> getUploadIncludeProduct(String pcode){
+		List<DataMap> list = uploadDao.getUploadIncludeProduct(pcode);
+		
+		return list;
+	}
+	
 	public List<DataMap> getUploadList(String pcode){
-		
 		List<DataMap> list = uploadDao.getUploadList(pcode);
-		
 		return list;
 	}
 	

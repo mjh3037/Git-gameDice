@@ -4,14 +4,39 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="product">
 	
+	<select id="getIncludeItemsId" parameterType="String" resultType="String">
+		select includeItemsId from productIncludeInfo where includeId=#{includeId}
+	</select>
+	
 	<select id="getIncludeProduct" parameterType="String" resultType="hashmap">
-		select * from productIncludeInfo where pcode = #{pcode};
+		select * from productIncludeInfo where includeId = #{includeId};
 	</select>
 	
 	<insert id="insertProductInfoAdd" parameterType="hashmap">
 		insert into productincludeInfo(price, content, aboutGame, releasedDate, releasedStatus, pcode, includePname)
 		values(#{price}, #{content},#{aboutGame}, #{releasedDate}, #{releasedStatus}, #{pcode}, #{includePname});
 	</insert>
+	
+	<select id="getProductPakageLogoInfo" parameterType="String" resultType="hashmap">
+		select uuid,
+			   uploadPath, 
+			   fileName 
+		from attach where screenType= 'L' and includeId = #{includeId};
+	</select>
+	
+	<select id="getProductCollectionInfo" parameterType="String" resultType="hashmap">
+			select  
+					t1.*,
+					t2.uuid,
+		            t2.uploadPath,
+		            t2.fileName,
+		            t2.pcode,
+		            t2.screenType,
+		            (select flatform from product where pcode = t1.pcode) as flatform
+		    from productincludeInfo t1 left join attach t2
+		    on t1.includeId = t2.includeId
+		    where t1.includeId= #{includeId} and screenType = 'L'
+	</select>
 	
 	<select id="getProductPakageInfo" parameterType="String" resultType="hashmap">
 			select  
@@ -21,10 +46,17 @@
 		            t2.fileName,
 		            t2.pcode,
 		            t2.screenType
-		            
+		                  
 		    from productincludeInfo t1 left join attach t2
 		    on t1.includeId = t2.includeId
-		    where t1.includeId= #{includeId}
+		    where t1.includeId= #{includeId} and screenType = 'S'
+	</select>
+	
+	<select id="getProductLogoInfo" parameterType="String" resultType="hashmap">
+		select uuid,
+			   uploadPath, 
+			   fileName 
+		from attach where screenType= 'L' and pcode = #{pcode} and includeId is null
 	</select>
 	
 	<select id="getProduct" parameterType="String" resultType="hashmap">
@@ -37,7 +69,23 @@
 		        
 				from product t1 left join attach t2
 				on t1.pcode = t2.pcode
-				where t1.pcode=#{pcode}
+				where t1.pcode=#{pcode} and t2.screenType = 'S' and t2.includeId is null
+	</select>
+	
+	<select id="getProductItemInfo" parameterType="String" resultType="hashmap">
+		select 
+				t1.pcode,
+				   t1.pname,
+			       t1.flatform,
+			       t1.price,
+			       t1.releasedDate,
+			       t1.salesStatus,
+			       t2.uploadPath,
+			       t2.fileName,
+			       t2.uuid
+		from product t1 left join attach t2
+		on t1.pcode = t2.pcode
+		where t1.pcode ='4' and screenType = 'L' and t2.includeId is null
 	</select>
 	
 	<select id="getProductPname" resultType="hashmap">

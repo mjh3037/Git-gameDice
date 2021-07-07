@@ -22,6 +22,10 @@ public class UploadDao {
 
 	private static String uploadFiles = "uploadFiles";
 
+	public List<DataMap> getUploadIncludeProduct(String pcode){
+		return session.selectList(uploadFiles + ".getUploadIncludeProduct", pcode);
+	}
+	
 	public List<DataMap> getUploadList(String pcode){
 		
 		return session.selectList(uploadFiles + ".getUploadList", pcode);

@@ -84,9 +84,7 @@ public class MainController {
 	@PostMapping("/main/autocomplete")
 	@ResponseBody
 	public List<DataMap> getAutoComplete(String value){
-		
-		System.out.println("request:"+value);
-		
+	
 		List<DataMap> result = mainService.getAutoComplete(value);
 		
 		for(int i=0; i< result.size(); i++) {

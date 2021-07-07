@@ -20,6 +20,11 @@ public class ProductDao {
 	private static String productPath= "product";
 	
 	
+	public String getIncludeItemsId(String includeId) {
+		
+		return session.selectOne(productPath + ".getIncludeItemsId", includeId);
+	}
+	
 	public List<DataMap> getIncludeProduct(String pcode){
 		
 		return session.selectList(productPath + ".getIncludeProduct", pcode);
@@ -38,13 +43,31 @@ public class ProductDao {
 		return session.selectList(productPath + ".getProductPname");
 	}
 	
-	public List<DataMap> getProductPakageInfo(String includeId){
+	public List<DataMap> getProductPakageLogoInfo(String includeId) {
 		
+		return session.selectList(productPath + ".getProductPakageLogoInfo", includeId);
+	}
+	
+	public List<DataMap> getProductCollectionInfo(String includeId){
+		return session.selectList(productPath + ".getProductCollectionInfo", includeId);
+	}
+	
+	public List<DataMap> getProductPakageInfo(String includeId){
 		return session.selectList(productPath + ".getProductPakageInfo", includeId);
+	}
+	
+	public List<DataMap> getProductLogoInfo(String includeId) {
+		
+		return session.selectList(productPath + ".getProductLogoInfo", includeId);
 	}
 	
 	public List<DataMap> getProduct(String pcode) {
 		return session.selectList(productPath + ".getProduct", pcode);
+	}
+	
+	public List<DataMap> getProductItemInfo(String pcode) {
+		
+		return session.selectList(productPath + ".getProductItemInfo",pcode);
 	}
 	
 	public void insertProduct(DataMap params) {

@@ -89,6 +89,7 @@ $(function(){
 					var i=0;
 					$.map(data, function(item){
 						
+						console.log("includeid"+item.includeId);
 						if(item.includeId != null){
 							pcode = item.includeId;
 							pname = item.includePname;
@@ -96,7 +97,11 @@ $(function(){
 							uploadPath = item.includeUploadPath;
 							uuid = item.includeUuid;
 							fileName = item.includefileName;
-							url = "/product/productPakageInfo/" + pcode;
+							if(item.packageType !=null){
+								url = "/product/productInfo/pak_" + item.packageType + "_" + pcode;
+							}else{
+								url = "/product/productInfo/pak_" + pcode;
+							}
 						}else{
 							pcode = item.pcode;
 							pname = item.pname;
@@ -108,8 +113,8 @@ $(function(){
 						}
 						if(i<5){
 							var fileCallPath = uploadPath + "\\" + uuid + "_" + fileName;
-							var url = "/product/productInfo/" + pcode;
-							str += "<div class='match_ds_collapse_flag'><a href='javascript:void(0)' onClick='getProductInfo("+url+")' class='searchterm_options_info'style='height:90px;'><div class='match_name'>" + pname + "</div>";
+// 							var url = "/product/productInfo/" + pcode;
+							str += "<div class='match_ds_collapse_flag'><a href='javascript:void(0)' onClick=getProductInfoNavber('"+url+"') class='searchterm_options_info'style='height:90px;'><div class='match_name'>" + pname + "</div>";
 							str += "<div class='match_img'><img src='/display?fileName=" + fileCallPath + "'></div>"
 							str += "<div class='match_price'>\\" + price + "</div></a>"
 							str += "</div>";
@@ -136,14 +141,14 @@ $(function(){
 	});
 });
 
-function getProductInfo(url){
+function getProductInfoNavber(url){
 	location.href= url;
 }
 
 $('#txtSearch').on('focusout',function(){
 	setTimeout(function(){
 		$('.searchterm_options').attr('style','display:none;');
-	}, 100);
+	}, 200);
 });
 	
 

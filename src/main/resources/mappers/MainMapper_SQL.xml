@@ -9,7 +9,7 @@
 	</select>
 
 	<select id="getAttachMain" parameterType="hashmap" resultType="hashmap">
-		select * from attach where screenType = 'M' limit 8
+		select * from attach where screenType = 'M' and includeId is null limit 8
 	</select>
 	
 	
@@ -37,7 +37,7 @@
 		        systemMaxRequirements,
 		        totalArcheive
 			from attach t1 left join product t2
-			on t1.pcode= t2.pcode where screenType=#{screenType}
+			on t1.pcode= t2.pcode where screenType=#{screenType} and includeId is null
 			<if test = '_parameter == "M"'>
 				limit 8;
 			</if>
@@ -73,10 +73,14 @@
                 	 
                 (select fileName 
                 	  from productIncludeInfo 
-                	 where includeId= t2.includeId) as includefileName
+                	 where includeId= t2.includeId) as includefileName,
                 	 
+                (select pakageType 
+                	  from productIncludeInfo 
+                	 where includeId= t2.includeId) as packageType
+                
 		from product t1 left join attach t2 on t1.pcode = t2.pcode
-		where upper(pname) LIKE upper(CONCAT('%',#{pname},'%')) and t2.screenType = 'M';
+		where upper(pname) LIKE upper(CONCAT('%',#{pname},'%')) and t2.screenType = 'L';
 	</select>
 
 </mapper>

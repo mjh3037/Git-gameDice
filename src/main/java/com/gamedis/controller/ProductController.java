@@ -1,6 +1,9 @@
 package com.gamedis.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -28,16 +31,37 @@ public class ProductController {
 	MainService mainService;
 	
 	
-	@RequestMapping("/product/getIncludeProduct")
+	@RequestMapping("/product/getIncludedItems")
 	@ResponseBody
-	public List<DataMap> getIncludeProduct(HttpServletRequest request){
+	public List<DataMap> getIncludedItems(HttpServletRequest request){
 		
-		System.out.println(".asdasd" + request.getParameter("pcode"));
-		List<DataMap> result = productService.getIncludeProduct(request.getParameter("pcode"));
+		String includeId = request.getParameter("includeId");
+		String includeItemsId = productService.getIncludeItemsId(includeId);
+		String items[] = includeItemsId.split(",");
+		List data= new ArrayList();
+		for(int i=0; i<items.length; i++) {
+			String item = items[i];
+			
+			if(item.contains("P")) {
+				
+				String splitPcode[] = item.split("_");
+				List<DataMap> productItem = productService.getProductItemInfo(splitPcode[1]);
+				
+				System.out.println(productItem);
+				data.add(productItem);
+			}else {
+				String splitIncludeId[] = item.split("_");
+				List<DataMap> includItem = productService.getProductCollectionInfo(splitIncludeId[1]);
+				
+				data.add(includItem);
+			}
+		}
 		
-		System.out.println(result);
-		return result;
+		System.out.println("data:" + data);
+		return data;
 	}
+	
+	
 	
 	
 	@RequestMapping("/product/productInfoAdd")
@@ -50,6 +74,7 @@ public class ProductController {
 		data.put("content", request.getParameter("content"));
 		data.put("aboutGame", request.getParameter("aboutGame"));
 		data.put("flatForm", request.getParameter("flatForm"));
+		data.put("pakageType", request.getParameter("pakageType"));
 		
 		if(request.getParameter("confirmationCheck").equals("none")) {
 			data.put("releasedDate", "0000-00-00");
@@ -58,8 +83,17 @@ public class ProductController {
 			data.put("releasedDate", request.getParameter("confirmationCheck"));
 			data.put("releasedStatus", "Confirmation");
 		}
+		
+		if(request.getParameter("includeItems").equals("none")) {
+			data.put("includeItems", "");
+			data.put("includeItemsId", "");
+		}else {
+			data.put("includeItems", request.getParameter("includeItems"));
+			data.put("includeItemsId", request.getParameter("includeItemsId"));
+		}
+		
 		System.out.println(data.getMap());
-		productService.insertProductInfoAdd(data);
+//		productService.insertProductInfoAdd(data);
 	}
 	
 	
@@ -112,11 +146,12 @@ public class ProductController {
 	@RequestMapping("/product/productPakageInfo/{idx}")
 	public ModelAndView productPakageInfo(@PathVariable("idx") String idx) {
 		
+		System.out.println("pak!");
 		ModelAndView view = new ModelAndView();
 
 		List<DataMap> data = productService.getIncludeProduct(idx);
 
-		view.setViewName("/product/productInfo");
+		view.setViewName("/product/productInfo/");
 		view.addObject("list", data.get(0));
 		
 		return view;
@@ -128,12 +163,34 @@ public class ProductController {
 		System.out.println("productInfo : " + idx);
 			
 		ModelAndView view = new ModelAndView();
+		List<DataMap> data = new ArrayList<DataMap>();
+		String includeId = "";
+		if(idx.contains("pak")) {
+			
+			if(idx.contains("collection")) {
+				
+				String includeIdArray[] = idx.split("_");
+				includeId = includeIdArray[2];
+				view.setViewName("/product/packageDetails");
+				data = productService.getProductCollectionInfo(includeId);
+			}else {
+				String includeIdArray[] = idx.split("_");
+				includeId = includeIdArray[2];
+				view.setViewName("/product/productInfo");
+				data = productService.getProductPakageInfo(includeId);
+			}
+			
+			
+			view.addObject("pak", idx);
 
-		List<DataMap> data = productService.getProduct(idx);
-
-		view.setViewName("/product/productInfo");
-		view.addObject("list", data.get(0));
+		}else {
+			view.setViewName("/product/productInfo");
+			data = productService.getProduct(idx);
+			
+		}
 		
+		view.addObject("list", data.get(0));
+		System.out.println(data.get(0));
 		return view;
 	}
 	
@@ -142,9 +199,40 @@ public class ProductController {
 	public List<DataMap> getHighlight(HttpServletRequest request){
 		
 		String pcode = request.getParameter("pcode");
+		String pak = request.getParameter("pak");
+		List<DataMap> list = new ArrayList<DataMap>();
+		DataMap logoInfo = new DataMap();
+
+		if(pak!= null) {
 		
-		List<DataMap> list = productService.getProduct(pcode);
-		System.out.println("highlight-list:" + list);
+			String includeIdArray[] = pak.split("_");
+			String includeId = includeIdArray[2];
+			 list = productService.getProductPakageInfo(includeId);
+		}else {
+			 list = productService.getProduct(pcode);
+		}
+		
+		System.out.println("list:"+list);
+		return list;
+	}
+	
+	@RequestMapping("/product/getLogoInfo")
+	@ResponseBody
+	public List<DataMap> getLogoInfo(HttpServletRequest request){
+		
+		String pcode = request.getParameter("pcode");
+		String pak = request.getParameter("pak");
+		List<DataMap> list = new ArrayList<DataMap>();
+		
+		if(pak!= null) {
+			
+			String includeIdArray[] = pak.split("_");
+			String includeId = includeIdArray[2];
+			 list = productService.getProductPakageLogoInfo(includeId);
+		}else {
+			 list = productService.getProductLogoInfo(pcode);
+		}
+		
 		return list;
 	}
 }

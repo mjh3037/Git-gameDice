@@ -8,7 +8,7 @@ import java.util.Set;
 public class DataMap{
 	
 	static Map<String, Object> map = new HashMap<String, Object>();
-
+	
 	public Object get(String key) {
 		return map.get(key);
 	}
@@ -39,6 +39,10 @@ public class DataMap{
 	
 	public Set<String> keySet(){
 		return map.keySet();
+	}
+	
+	public boolean isEmpty(){
+	    return map.isEmpty();
 	}
 	
 	public void putAll(Map<?extends String, ?extends Object> m) {

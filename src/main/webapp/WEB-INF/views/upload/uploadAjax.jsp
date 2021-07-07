@@ -58,11 +58,12 @@
 	.uploadList_bg{
 		display: inline-block;
 		width: 900px;
-		height: 300px;
+		height: 100%;
 		background: grey;
 		opacity: 0.85;
 		margin-top: 20px;
 		margin-left: 250px;
+		margin-bottom: 250px;
 	}
 	
 	.bg {
@@ -132,6 +133,10 @@
 	.bigPicture img{
 		width: 600px;
 	}
+	
+	body{
+		height: 100%;
+	}
 </style>
 <title>Insert title here</title>
 </head>
@@ -193,7 +198,7 @@ function getIncludeProduct(pcode){
 	var str ="";
 	
 		$.ajax({
-			url: "/product/getIncludeProduct",
+			url: "/upload/getUploadIncludeProduct",
 			type: "get",
 			dataType: "json",
 			data: {"pcode": pcode},

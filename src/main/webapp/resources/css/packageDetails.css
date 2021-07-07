@@ -1,0 +1,261 @@
+@charset "UTF-8";
+
+
+body{
+	margin: 0;
+	width: 2000px;
+	height: 100%;
+	font-family: 'Farro', sans-serif;
+	
+}
+
+.homepage_body{
+	width: 100%;
+	height: 100%;
+/* 	z-index: 2000; */
+	color: white;
+}
+
+.store_overlay{
+	width: 100%;
+	height: 100%;
+	z-index: 700;
+	position: relative;
+	/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#8b919b+0,2c539e+100 */
+	background: #8b919b; /* Old browsers */
+	background: -moz-linear-gradient(left,  #8b919b 0%, #2c539e 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left,  #8b919b 0%,#2c539e 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right,  #8b919b 0%,#2c539e 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8b919b', endColorstr='#2c539e',GradientType=1 ); /* IE6-9 */
+
+}
+.title_area{
+	
+}
+/*content*/
+.content{
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	padding-right: 550px;
+	padding-left: 350px;
+}
+
+.page_content{
+	display: inline-block;
+	width: 100%;
+	position: relative;
+	
+}
+
+/*leftcol*/
+.leftcol{
+	width: 646px;
+	float:left;
+}
+.package_header_container{
+	background: #5C258D;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #4389A2, #5C258D);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #4389A2, #5C258D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.package_header_container img{
+	width: 616px;
+	margin: 15px;
+}
+
+
+/*game_area_purchase*/
+.game_area_purchase{
+	display: inline-block;
+	position: relative;
+	width: 100%;
+	height: 100px;
+	margin: 50px 0px px 0px;
+	color: #b4b4b4;
+}
+
+.game_area_purchase_game{
+	display: inline-block;
+	position: relative;
+	width: 100%;
+	height: 75px;
+	margin: 5px 0px 0px 0px;
+	background: #bdc3c7;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	padding: 10px 15px 10px 15px;
+	border-radius: 3px;
+}
+
+.game_purchase_title{
+	float: left;
+	font-size: 20px;
+}
+
+.game_purchase_action{
+	display: inline-block;
+	position: relative;
+	width: 75%;
+	height: 75px;
+	float: right;
+	margin-top: 5px;
+}
+
+.game_purchase_action_bg{
+	display: inline-block;
+	position: relative;
+	width: 175px;
+	height: 50px;
+	padding: 10px;
+	float: right;
+	background-color: green;
+}
+
+.btn_addtocart a{
+	text-decoration: none;
+	color: #b4b4b4;
+}
+
+.btn_addtocart{
+	padding-left: 13px;
+}
+
+
+.game_purchase_action_bg{
+	display: inline-block;
+	position: relative;
+	width: 175px;
+	height: 50px;
+	padding: 10px;
+	float: right;
+/* 	background-color: green; */
+}
+
+.btn_addtocart a{
+	text-decoration: none;
+	color: #b4b4b4;
+}
+
+/* .btn_addtocart{ */
+/* 	padding-left: 13px; */
+/* } */
+
+/*about us*/
+.game_page_autocollapse_ctn{
+	display: inline-block;
+	position: realtive;
+	width: 100%;
+/* 	background-color: yellow; */
+	margin: 25px 0px 0px 0px;
+	padding: 10px;
+}
+.game_area_description{
+	display: inline-block;
+	position: realtive;
+	width: 100%;
+/* 	background-color: green; */
+	padding: 10px;
+	color: #b4b4b4;
+}
+
+.game_area_description h2{
+	color: white;
+}
+
+.tab_item{
+	width: 100%;
+/* 	height: 69px; */
+	position: relative;
+}
+
+.tab_item_overlay{
+	display: block;
+	width: 646px;
+	height: 87px;
+	position: absoulte;
+	z-index: 10;
+	margin-top: 10px;
+	text-decoration: none;
+	background: #000046;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #1CB5E0, #000046);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #1CB5E0, #000046); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	color: #b4b4b4;
+}
+.tab_item_overlay:hover{
+	color: #b4b4b4;
+}
+.tab_item_header{
+	width: 150px;
+	height: 87px;
+	float: left;
+}
+
+.tab_item_header img{
+	width: 150px;
+	height: 87px;
+	float: left;
+}
+
+.tab_item_sub_bg{
+	width: 300px;
+	height: 87px;
+	padding: 10px;
+	float: left;
+	font-size: 17.5px;
+}
+
+.tab_item_content{
+	display: block;
+	width: 250px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	margin-bottom: 10px;
+}
+
+.tab_item_flatform{
+	width: 30px;
+	height: 25px;
+	float: left;
+	margin: 5px 0px 0px 10px;
+}
+.tab_item_price{
+	float: left;
+}
+
+.package_totals_area{
+	width: 100%;
+	height: 150px;
+	background-color: #586284;	
+	color: #b4b4b4;
+	margin-top:15px;
+	border-radius: 5px;
+	padding: 20px;
+	font-size: 20px;
+}
+
+.package_totals_row{
+	padding: 0px 0px 0px 200px;
+	
+}
+
+.package_totals_row .price{
+	float: right;
+}
+
+.package_savings_bar{
+	background-color: black;
+	height: 40px;
+	margin-top: 20px;
+	font-size: 15px;
+	color: #4BCF18;
+	padding: 10px;
+}
+
+.rightcol{
+	width: 308px;
+	float: right;
+}
+

@@ -100,7 +100,7 @@
 									<span class="platform_img win"></span>
 									<span class="platform_img mac"></span>
 								</div>
-								<h1>Download</h1>
+								<div class="game_purchase_title">${list.pname}</h3>
 								
 								<div class="game_purchase_action">
 									<div class="game_purchase_action_bg">
@@ -210,30 +210,52 @@ function getHighlightStripItemImg(){
 	var str ="";
 	var pcode = "${list.pcode}";
 	
+	if("${pak}"){
+		var pak = "${pak}";
+	}
+	
 		$.ajax({
 			url: "/product/highlight",
 			type: "GET",
 			dataType: "json",
-			data: {"pcode": pcode},
+			data: {"pcode": pcode, "pak": pak},
 			success: function(result){
-				
 				setHighlightStripItemImg(result);
-				
 			}
-		})
+		});
 }
 
 
 
 function getGameHeaderImg(){
-	var uploadPath = $('.inputuploadPath').html();
-	var uuid = "${list.uuid}";
-	var subInfo = "${list.fileName}";
-
-	var fileCallPath = encodeURIComponent(uploadPath + "\\" + uuid + "_" + subInfo);
-	var str ="<img src='/display?fileName="+ fileCallPath + "'>";
+	var fileCallPath = "";
+	var str = "";
+	var pcode = "${list.pcode}";
 	
-	$('.gameHeaderImageCtn').append(str);
+	if("${pak}"){
+		var pak = "${pak}";
+	}
+	
+		$.ajax({
+			url: "/product/getLogoInfo",
+			type: "GET",
+			dataType: "json",
+			data: {"pcode": pcode, "pak": pak},
+			success: function(result){
+				
+				$.map(result, function(item){
+					
+					console.log(item.uploadPath + "\\" + item.uuid + "_" + item.fileName);
+					fileCallPath = encodeURIComponent(item.uploadPath + "\\" + item.uuid + "_" + item.fileName);
+					str ="<img src='/display?fileName="+ fileCallPath + "'>";
+					
+				});
+			 	$('.gameHeaderImageCtn').append(str);
+			}
+		});
+	
+	
+
 	
 	
 }

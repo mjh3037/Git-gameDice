@@ -319,4 +319,14 @@ public class UploadController {
 		return splitNames;
 //		return null;
 	}
+	
+	@RequestMapping("/upload/getUploadIncludeProduct")
+	@ResponseBody
+	public List<DataMap> getUploadIncludeProduct(HttpServletRequest request){
+		System.out.println("uploadinclude get!");
+		
+		List<DataMap> result = uploadService.getUploadIncludeProduct(request.getParameter("pcode"));
+		
+		return result;
+	}
 }
