@@ -168,12 +168,13 @@ public class ProductController {
 		if(idx.contains("pak")) {
 			
 			if(idx.contains("collection")) {
-				
+				System.out.println("col");
 				String includeIdArray[] = idx.split("_");
 				includeId = includeIdArray[2];
 				view.setViewName("/product/packageDetails");
 				data = productService.getProductCollectionInfo(includeId);
 			}else {
+				System.out.println("not cal");
 				String includeIdArray[] = idx.split("_");
 				includeId = includeIdArray[2];
 				view.setViewName("/product/productInfo");

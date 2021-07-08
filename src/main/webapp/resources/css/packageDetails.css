@@ -225,35 +225,83 @@ body{
 	float: left;
 }
 
+.discount_block{
+	width: 166px;
+	height: 87px;
+	float: right;
+	padding: 10px;
+	
+}
+.discount_pct{
+	width: 56px;
+	float: left;
+	margin-top: 20px;
+	font-size: 20px;
+	background: #1c7909;
+}
+
+.discount_prices{
+	width: 70px;
+	height: 70px;
+	float: right;
+	margin: 12.5px 5px 5px 5px;
+}
+
+.discount_original_price{
+	margin-bottom: 0px;
+	font-size: 12px;
+	text-decoration:line-through;
+	opacity:0.8;
+}
+
+.discount_final_price{
+	font-size: 15px;
+}
 .package_totals_area{
 	width: 100%;
 	height: 150px;
 	background-color: #586284;	
 	color: #b4b4b4;
 	margin-top:15px;
+	margin-bottom: 25px;
 	border-radius: 5px;
 	padding: 20px;
 	font-size: 20px;
 }
 
-.package_totals_row{
+.package_package_row{
 	padding: 0px 0px 0px 200px;
 	
 }
+.package_individual_row{
+	padding: 0px 0px 0px 200px;
+}
 
-.package_totals_row .price{
+.package_individual_row .price{
+	float: right;
+}
+
+.package_package_row .price{
 	float: right;
 }
 
 .package_savings_bar{
 	background-color: black;
-	height: 40px;
+	height: 45px;
 	margin-top: 20px;
 	font-size: 15px;
 	color: #4BCF18;
 	padding: 10px;
+	border-radius: 5px;
 }
+.savings{
+	width: 156px;
+	height: 30px;
+	text-align: right;
+	float: right;
+	font-size: 20px;
 
+}
 .rightcol{
 	width: 308px;
 	float: right;

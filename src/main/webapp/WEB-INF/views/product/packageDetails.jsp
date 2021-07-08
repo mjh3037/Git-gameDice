@@ -67,17 +67,17 @@
 							<div class="tab_item">
 							</div>
 							<div class="package_totals_area">
-								<div class="package_totals_row">
+								<div class="package_individual_row">
 									Price of individual products:
 									<div class="price">\3800</div>
 								</div>
-								<div class="package_totals_row">
+								<div class="package_package_row">
 									Cost of this package:
 									<div class="price">\2000</div>
 								</div>
 								
 								<div class="package_savings_bar">
-									<div class="savings"></div>
+									<div class="savings">\1800</div>
 									<div class="message">Here's what you save by buying this package</div>
 								</div>
 							</div>
@@ -99,7 +99,8 @@ var uuid = "${list.uuid}";
 var fileName = "${list.fileName}";
 /*uploadPath 깨짐 현상으로 인한 input 호출*/
 var uploadPath = $("#inputUploadPathTxt").val();
-
+var discountRate ="${list.discountRate}";
+var thisPackagePrice = "${list.price}";
 
 function getIncludedItems(){
 	var includeId = "${list.includeId}";
@@ -115,6 +116,7 @@ function getIncludedItems(){
 				var name ="";
 				var flatform="";
 				var fullPrice = 0;
+				var cal = 0;
 				$(response).each(function(i, obj){
 					
 					$.map(response[i], function(item){
@@ -144,15 +146,23 @@ function getIncludedItems(){
 						str +="<div class='tab_item_header'><img src='/display?fileName="+ fileCallPath + "'></div>";
 						str +="<div class='tab_item_sub_bg'><div class='tab_item_content'>" + name + "</div>";
 						str +="<div class='tab_item_flatform'>" + flatform + "</div>"
-						str +="<div class='tab_item_price'>" + item.price + "</div></div></a>"
+						str +="<div class='tab_item_price'>" + item.price + "</div></div>";
+						str +="<div class='discount_block'><div class='discount_pct'>-" + item.discountRate + "%</div>";
 						
-						fullPrice = fullPrice + item.price;
+						/*discount calculate*/
+						cal = (item.price/10) * (10-(item.discountRate * 0.1));
+						str +="<div class='discount_prices'><div class='discount_original_price'>\\ " + item.price + "</div><div class='discount_final_price'>\\ " + cal + "</div></div></div></a>";
+						fullPrice = fullPrice + cal;
 					});
 				});
 
 				$(".tab_item").append(str);
-				$(".package_totals_row")
-				$(".savings").html();
+				$(".package_individual_row .price").html("\\ " + fullPrice);
+				/*discount calculate this package*/
+				cal = (thisPackagePrice/10) * (10-(discountRate * 0.1));
+				$(".package_package_row .price").html("\\ " + cal);
+				savings = fullPrice - cal;
+				$(".savings").html("\\ " + savings);
 			}
 		});
 		

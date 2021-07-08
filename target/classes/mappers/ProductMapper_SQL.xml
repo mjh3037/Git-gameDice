@@ -13,8 +13,8 @@
 	</select>
 	
 	<insert id="insertProductInfoAdd" parameterType="hashmap">
-		insert into productincludeInfo(price, content, aboutGame, releasedDate, releasedStatus, pcode, includePname)
-		values(#{price}, #{content},#{aboutGame}, #{releasedDate}, #{releasedStatus}, #{pcode}, #{includePname});
+		insert into productincludeInfo(price, content, aboutGame, releasedDate, releasedStatus, pcode, includePname, pakageType)
+		values(#{price}, #{content},#{aboutGame}, #{releasedDate}, #{releasedStatus}, #{pcode}, #{includePname}, #{pakageType});
 	</insert>
 	
 	<select id="getProductPakageLogoInfo" parameterType="String" resultType="hashmap">
@@ -32,7 +32,8 @@
 		            t2.fileName,
 		            t2.pcode,
 		            t2.screenType,
-		            (select flatform from product where pcode = t1.pcode) as flatform
+		            (select flatform from product where pcode = t1.pcode) as flatform,
+		            (select rate from discountInfo where pcode = t1.pcode and includeId = t1.includeId) as discountRate
 		    from productincludeInfo t1 left join attach t2
 		    on t1.includeId = t2.includeId
 		    where t1.includeId= #{includeId} and screenType = 'L'
@@ -82,10 +83,11 @@
 			       t1.salesStatus,
 			       t2.uploadPath,
 			       t2.fileName,
-			       t2.uuid
+			       t2.uuid,
+			       (select rate from discountInfo where pcode = t1.pcode and includeId is null) as discountRate
 		from product t1 left join attach t2
 		on t1.pcode = t2.pcode
-		where t1.pcode ='4' and screenType = 'L' and t2.includeId is null
+		where t1.pcode =#{pcode} and screenType = 'L' and t2.includeId is null
 	</select>
 	
 	<select id="getProductPname" resultType="hashmap">
